@@ -9,34 +9,34 @@ import utils.Benchmarking;
 
 public class App {
     public static void main(String[] args) throws Exception {
-    int size = 10000; 
-    Persona[] base = generarPersonas(size);
-    Persona[] copiaInsercion = base.clone();
-    Persona[] copiaQuickSort = base.clone();
-    
-    SortPersonaMethods metodos = new SortPersonaMethods();
 
+        int size = 10000; 
+        
+        Persona[] base = generarPersonas(size);
+        Persona[] copiaInsercion = base.clone();
+        Persona[] copiaQuickSort = base.clone();
 
-    Callable<Void> funcionIncertion = () -> {
-            metodos.SortIncertion(copiaInsercion);
+        SortPersonaMethods metodos = new SortPersonaMethods();
+
+        Callable<Void> funcionInsertion = () -> {
+            metodos.insertionSort(copiaInsercion);
             return null;
         };
+    
+
+        Resultado rIncertion = Benchmarking.medirTiempo(funcionInsertion, "Insertion Sort","Aleatorio", size);
+            System.out.println(rIncertion.getAlgoritmo() + "en milisegundos= " + rIncertion.getTiempoMillis());
+
+
+        Callable<Void> funcionQuickSort = () -> {
+            metodos.quickSort(copiaQuickSort, 0 , copiaQuickSort.length - 1 );
+            return null;
+        };
+    
+
+        Resultado rQuickSort = Benchmarking.medirTiempo(funcionQuickSort, "QuickSort","Aleatorio", size);
+            System.out.println(rQuickSort.getAlgoritmo() + "en milisegundos= " + rQuickSort.getTiempoMillis());
     }
-
-
-    Resultado rIncertion = Benchmarking.medirTiempo(funcionCallable, "Incertion",  , size);
-        System.out.println(rIncertion.getName() + "=" + rBubble.getTime());
-
-
-    public static int[] generate (int size){
-        int[] array = new int[size];
-        for (int i = 0; i < size; i++) {
-            int numero = (int) (Math.random() * 10000);
-            array[i] = numero;
-        }
-        return array;
-    }
-
 
     public static Persona[] generarPersonas(int cantidad){
         Persona[] personas = new Persona[cantidad];

@@ -3,11 +3,11 @@ package controller;
 import models.Persona;
 
 public class SortPersonaMethods {
-    public void incertionSort(Persona[] personas) {
+    public void insertionSort(Persona[] personas) {
         for(int i = 1; i < personas.length; i++){
             int j = i-1;
             Persona aux = personas[i];
-            while ((j >= 0) && (personas[j].getNombre().compareToIgnoreCase(aux.getNombre()))>0) {
+            while ((j >= 0) && (personas[j].getCriterioOrdenamiento() > aux.getCriterioOrdenamiento())) {
                 personas[j+1] = personas[j];
                 j--;
             }
