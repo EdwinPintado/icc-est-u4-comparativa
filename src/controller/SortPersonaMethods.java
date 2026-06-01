@@ -1,0 +1,46 @@
+package controller;
+
+import models.Persona;
+
+public class SortPersonaMethods {
+    public void incertionSort(Persona[] personas) {
+        for(int i = 1; i < personas.length; i++){
+            int j = i-1;
+            Persona aux = personas[i];
+            while ((j >= 0) && (personas[j].getNombre().compareToIgnoreCase(aux.getNombre()))>0) {
+                personas[j+1] = personas[j];
+                j--;
+            }
+            personas[j+1] = aux;
+        }   
+    }
+
+    public void quickSort (Persona[] personas, int inicio, int fin){
+        if (inicio<fin){
+            int indicePivote = participar(personas, inicio, fin);
+            quickSort(personas, inicio, indicePivote-1);
+            quickSort(personas, indicePivote +1, fin);
+        }
+    }
+
+    private int participar(Persona[] personas, int inicio, int fin){
+        Persona pivote = personas [fin];
+        int i = inicio-1;
+
+        for ( int j = inicio ; j< fin ; j++){
+            if( personas[j].getCriterioOrdenamiento()<= pivote.getCriterioOrdenamiento()){
+                i++;
+                intercambiar(personas,i,j);
+            }
+        }
+        intercambiar(personas,i+1,fin);
+        return i+1;
+
+    }
+    private void intercambiar (Persona[] personas, int i, int j){
+        Persona aux = personas[i];
+        personas[i] = personas[j];
+        personas[j]= aux;
+    }
+}
+    
