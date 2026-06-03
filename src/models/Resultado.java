@@ -75,8 +75,8 @@ public class Resultado {
 
     @Override
     public String toString() {
-        return "Resultado [algoritmo=" + algoritmo + ", escenario=" + escenario + ", sample=" + sample + ", tiempoNano="
-                + tiempoNano + ", tiempoMillis=" + tiempoMillis + "]";
+        return algoritmo + " | " + escenario + " | " + sample + " | "
+                + tiempoMillis + " ms";
     }
 
 }
